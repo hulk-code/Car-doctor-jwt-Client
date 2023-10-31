@@ -1,7 +1,8 @@
 
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../AuthPrivider/AuthProvider";
+
 import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 
 const Navber = () => {

@@ -2,13 +2,15 @@ import { useContext, useState } from "react";
 
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { GoogleAuthProvider, getAuth, linkWithCredential, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 import { BiLogoGoogle } from "react-icons/bi";
 import Swal from "sweetalert2";
-import { AuthContext } from "../AuthPrivider/AuthProvider";
-import app from "../../assets/Firebase/firebase.confi";
-import axios from "axios";
+
+
+import { AuthContext } from "../Component/AuthProvider/AuthProvider";
+import app from "../FireBase/Firebase.config";
+// import axios from "axios";
 
 const auth=getAuth(app)
 
@@ -33,18 +35,20 @@ const Login = () => {
     console.log(password,email);
     logIn(email,password)
     .then(result =>{
+        console.log(result.user)
+        nevigate(location ?.state ?location.state : '/')
       
-      const logedInUser=result.user;
-      console.log(logedInUser)
-      const user={email};
+    //   const logedInUser=result.user;
+    //   console.log(logedInUser)
+    //   const user={email};
       
-      axios.post('http://localhost:3000/jwt' ,user,{withCredentials:true})
-      .then(res =>{
-        console.log(res.data)
-        if(res.data.success){
-          nevigate(location ?.state ?location.state : '/')
-        }
-      })
+    //   axios.post('http://localhost:3000/jwt' ,user,{withCredentials:true})
+    //   .then(res =>{
+    //     console.log(res.data)
+    //     if(res.data.success){
+    //       nevigate(location ?.state ?location.state : '/')
+    //     }
+    //   })
 
     })
     .catch(error =>{

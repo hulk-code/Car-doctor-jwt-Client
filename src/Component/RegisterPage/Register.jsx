@@ -4,7 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 
 import Swal from "sweetalert2";
-import { AuthContext } from "../AuthPrivider/AuthProvider";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+
 
 
 

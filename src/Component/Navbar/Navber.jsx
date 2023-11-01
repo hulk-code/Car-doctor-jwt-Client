@@ -25,7 +25,7 @@ const Navber = () => {
     <li><NavLink to='/contact'>CONTACT</NavLink></li>
     {
       user?.email ? <>
-       <li><NavLink to='/booking'>Booking</NavLink></li>
+       <li><NavLink to='/booked'>Booking</NavLink></li>
      <li> <button className="btn btn-ghost" onClick={hanadleLogOut} >Log Out</button></li>
       </>
       :

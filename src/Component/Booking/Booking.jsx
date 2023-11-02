@@ -6,7 +6,7 @@ import BookingCard from "../BookingCard/BookingCard";
 const Booking = () => {
     const { user } = useContext(AuthContext)
     const[booked ,setBooked]=useState([])
-    const url = `http://localhost:3000/booking?email=${user.email}`
+    const url = `http://localhost:3000/booking?email=${user?.email}`
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -14,7 +14,8 @@ const Booking = () => {
                setBooked(data)
             })
     }, [url])
-    const handleDelete=id=>{
+
+    const handleDelete= id =>{
         const proceed=confirm('are you sure to delete')
         if(proceed){
             fetch(`http://localhost:3000/booking/${id}`,{
@@ -25,13 +26,13 @@ const Booking = () => {
                 console.log(data)
                 if(data.deletedCount>0){
                     alert('deletd successFull')
-                    const remaining=booked.filter(datas => datas._id !==id)
+                    const remaining=booked.filter(datas => datas._id !== id)
                     setBooked(remaining)
                 }
             })
         }
     }
-    const handelConfirm=id=>{
+    const handelConfirm= id =>{
         fetch(`http://localhost:3000/bookings/${id}`,{
             method:"PATCH",
             headers:{
@@ -43,7 +44,7 @@ const Booking = () => {
         .then(res=> res.json())
         .then(data =>{
             console.log(data)
-            if(data. modifiedCount >0){
+            if(data. modifiedCount > 0){
                 const remainig=booked.filter(book => book._id !== id)
                 const update=booked.find(book => book._id===id)
                 update.status='confirm'
@@ -54,6 +55,29 @@ const Booking = () => {
         })
 
     }
+    // const handelConfirm=id=>{
+    //     fetch(`http://localhost:3000/bookings/${id}`,{
+    //         method:"PATCH",
+    //         headers:{
+    //             'content-type':'application/json'
+    //         },
+    //         body:JSON.stringify({status:'confirm'})
+
+    //     })
+    //     .then(res=> res.json())
+    //     .then(data =>{
+    //         console.log(data)
+    //         if(data. modifiedCount >0){
+    //             const remainig=booked.filter(book => book._id !== id)
+    //             const update=booked.find(book => book._id===id)
+    //             update.status='confirm'
+    //             const newBooking=[update ,...remainig]
+    //             setBooked(newBooking);
+
+    //         }
+    //     })
+
+    // }
     return (
         <div>
             <p>{booked.length}</p>

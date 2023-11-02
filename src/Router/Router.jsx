@@ -6,6 +6,7 @@ import Login from "../Login/Login";
 import Register from "../Component/RegisterPage/Register";
 import CheckOut from "../Component/CheckOut/CheckOut";
 import Booking from "../Component/Booking/Booking";
+import PrivetRoute from "../Component/PrivateRoute/PrivateRoute";
 
   const router = createBrowserRouter([
     {
@@ -27,7 +28,7 @@ import Booking from "../Component/Booking/Booking";
       },
       {
         path: '/checkout/:id',
-        element: <CheckOut></CheckOut>,
+        element:<PrivetRoute> <CheckOut></CheckOut></PrivetRoute>,
         loader: ({params})=> fetch(`http://localhost:3000/services/${params.id}`)
       },
       {

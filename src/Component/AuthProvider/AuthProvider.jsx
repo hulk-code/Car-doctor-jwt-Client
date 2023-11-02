@@ -3,6 +3,7 @@
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 import { createContext,  useEffect,  useState } from "react";
 import app from "../../FireBase/Firebase.config";
+// import axios from "axios";
 
 
 
@@ -38,6 +39,13 @@ const AuthProvider = ({children}) => {
      const unSubscribe=onAuthStateChanged(auth , currentUser =>{
         setUser(currentUser)
         setloading(false)
+        // if(currentUser){
+        //   const loggedUser={email:currentUser.email}
+        //   axios.post('http://localhost:3000/jwt', loggedUser, {withCredentials:true})
+        //   .then(res =>{
+        //     console.log('token response', res.data)
+        //   })
+        // }
      })
      return()=>{
         unSubscribe();
